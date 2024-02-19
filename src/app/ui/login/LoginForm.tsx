@@ -1,4 +1,4 @@
-// Import necessary modules
+"use client"
 import { signIn } from "next-auth/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";

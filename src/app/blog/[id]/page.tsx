@@ -1,9 +1,10 @@
 "use client";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getBlogPostById } from "@/app/lib/firebase/blog/api";
 import { Inria_Serif } from "next/font/google";
 import { Jomolhari } from "next/font/google";
 import Link from "next/link";
+import Image from "next/image";
 
 // Define an interface for the blog post
 interface BlogPost {
@@ -32,19 +33,20 @@ export default function Page({ params }: { params: { id: string } }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchBlogPostByID();
-  }, []);
-
-  const fetchBlogPostByID = async () => {
-    try {
-      const postById = await getBlogPostById(params.id);
-      setBlogPost(postById);
-      setLoading(false); // Set loading to false after data is fetched
-    } catch (error) {
-      console.error("Error fetching blog post:", error);
-      setLoading(false); // Set loading to false on error as well
-    }
-  };
+    const fetchBlogPostByID = async () => {
+      try {
+        const postById = await getBlogPostById(params.id);
+        setBlogPost(postById);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching blog post:", error);
+        setLoading(false);
+      }
+    };
+  
+    fetchBlogPostByID(); // Panggil fungsi fetchBlogPostByID di dalam useEffect
+  
+  }, [params.id])
 
   return (
     <div className="flex flex-col items-center w-full p-6 md:p-10 lg:p-16">
@@ -57,7 +59,7 @@ export default function Page({ params }: { params: { id: string } }) {
       </Link>
           {blogPost && (
             <>
-              <img className="w-full md:w-[700px] mb-8 md:mb-10" src={blogPost.imageUrl} alt="halo" />
+              <Image height={150} width={150} className="w-full md:w-[700px] mb-8 md:mb-10" src={blogPost.imageUrl} alt="halo" />
               <h1
                 className={`${inriaSerif.className} text-2xl md:text-3xl lg:text-4xl underline text-center mb-8 md:mb-10`}
               >

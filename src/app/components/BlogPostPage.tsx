@@ -9,6 +9,7 @@ import {
   updateBlogPost,
 } from "@/app/lib/firebase/blog/api";
 import Link from "next/link";
+import Image from "next/image";
 
 // Define the interface for a blog post
 interface BlogPost {
@@ -91,7 +92,9 @@ const BlogListAdmin: React.FC<BlogListProps> = ({ blogPosts }) => {
         >
           <div className="flex mb-5 sm:mb-0">
             {blog.imageUrl && (
-              <img
+              <Image
+              height={150}
+              width={150}
                 src={blog.imageUrl}
                 alt={`Image for ${blog.title}`}
                 className="w-full sm:w-52 h-auto mb-3 sm:mr-5"

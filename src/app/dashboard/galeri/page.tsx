@@ -7,9 +7,16 @@ import {
   updateGaleri,
   deleteGaleri,
 } from '@/app/lib/firebase/galeri/api';
+import Image from 'next/image';
+interface GaleriPost {    
+  id: string;
+  title: string;
+  imageUrl: string;
+  date: { seconds: number; nanoseconds: number };
+}
 
 export default function Home() {
-  const [galeriPosts, setGaleriPosts] = useState([]);
+  const [galeriPosts, setGaleriPosts] = useState<GaleriPost[]>([]);
   const [formData, setFormData] = useState({
     title: '',
     file: null,
@@ -125,7 +132,7 @@ export default function Home() {
         {galeriPosts.map((post) => (
           <div key={post.id} className="border p-4 mb-4">
             <h2 className="text-xl font-semibold">{post.title}</h2>
-            <img src={post.imageUrl} alt={post.title} className="mt-2 w-72 mb-2" />
+            <Image height={150} width={150} src={post.imageUrl} alt={post.title} className="mt-2 w-72 mb-2" />
 
             <div className="flex space-x-4">
               <button

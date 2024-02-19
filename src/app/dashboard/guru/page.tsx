@@ -2,9 +2,16 @@
 "use client"
 import { useState, useEffect } from 'react';
 import { getGuruPosts, createGuru, updateGuru, deleteGuru } from '@/app/lib/firebase/guru/api';
-
+import Image from 'next/image';
+interface GuruPost {    
+  id: string;
+  name: string;
+  position: string;
+  imageUrl: string;
+  date: { seconds: number; nanoseconds: number };
+}
 export default function GuruPage() {
-  const [guruPosts, setGuruPosts] = useState([]);
+  const [guruPosts, setGuruPosts] = useState<GuruPost[]>([]);
   const [formData, setFormData] = useState({
     name: '',
     position: '',
@@ -22,7 +29,7 @@ export default function GuruPage() {
     fetchGuruPosts();
   }, []);
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: any) => {
     const { name, value, files } = e.target;
     setFormData({
       ...formData,
@@ -51,7 +58,7 @@ export default function GuruPage() {
     });
   };
 
-  const handleUpdateGuru = async (id) => {
+  const handleUpdateGuru = async (id: string) => {
     const updatedGuruData = {
       name: formData.name,
       position: formData.position,
@@ -73,17 +80,7 @@ export default function GuruPage() {
     setEditingId(null);
   };
 
-  const handleEditGuru = async (id) => {
-    const guruToEdit = await getGuruById(id);
-    setFormData({
-      name: guruToEdit.name,
-      position: guruToEdit.position,
-      file: null, // Assuming you don't want to change the file when editing
-    });
-    setEditingId(id);
-  };
-
-  const handleDeleteGuru = async (id) => {
+  const handleDeleteGuru = async (id: string) => {
     await deleteGuru(id);
 
     // Refresh the posts after deletion
@@ -149,7 +146,7 @@ export default function GuruPage() {
           <div key={post.id} className="border p-4 mb-4">
             <h2 className="text-xl font-semibold">Nama: {post.name}</h2>
             <p>Jabatan: {post.position}</p>
-            <img src={post.imageUrl} alt={post.name} className="mt-2 w-72 mb-2" />
+            <Image height={150} width={150} src={post.imageUrl} alt={post.name} className="mt-2 w-72 mb-2" />
 
             <div className="flex space-x-4">
               <button

@@ -10,16 +10,16 @@ const BlogForm = ({ onAddBlog, onUpdateBlog, initialBlog = null }: any) => {
   // State variables for title, content, and file
   const [title, setTitle] = useState(initialBlog?.title || "");
   const [content, setContent] = useState(initialBlog?.content || "");
-  const [file, setFile] = useState(null);
+  const [file, setFile] = useState<File | null>(null); // Update file state type
 
   // Function to strip HTML tags
-  const stripHtmlTags = (html) => {
+  const stripHtmlTags = (html: string) => {
     const doc = new DOMParser().parseFromString(html, "text/html");
     return doc.body.textContent || "";
   };
 
   // Function to handle form submission
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => { // Update handleSubmit function parameter type
     e.preventDefault();
 
     // Check if there's a selected file
@@ -32,7 +32,7 @@ const BlogForm = ({ onAddBlog, onUpdateBlog, initialBlog = null }: any) => {
     const cleanedContent = content
       .split(/<\/?p>/)
       .filter(Boolean)
-      .map((paragraph) => `<p>${paragraph}</p>`)
+      .map((paragraph: string) => `<p>${paragraph}</p>`)
       .join('\n');
 
     // Create an object with blog data
@@ -52,9 +52,9 @@ const BlogForm = ({ onAddBlog, onUpdateBlog, initialBlog = null }: any) => {
   };
 
   // Function to handle file change
-  const handleFileChange = (e: any) => {
-    const selectedFile = e.target.files[0];
-    setFile(selectedFile);
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => { // Update handleFileChange function parameter type
+    const selectedFile = e.target.files?.[0]; // Update to handle potentially undefined value
+    setFile(selectedFile || null); // Set file to null if no file is selected
   };
 
   return (
@@ -82,7 +82,6 @@ const BlogForm = ({ onAddBlog, onUpdateBlog, initialBlog = null }: any) => {
           editor={ClassicEditor}
           data={content}
           onChange={(event, editor) => setContent(editor.getData())}
-          className="w-full h-[50px] border border-gray-300 rounded focus:outline-none focus:border-blue-500"
         />
       </div>
       {/* File input */}

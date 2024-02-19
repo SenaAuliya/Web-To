@@ -1,6 +1,7 @@
 "use client"
 import { useEffect, useState } from "react";
 import { getGaleriPosts } from "@/app/lib/firebase/galeri/api";
+import Image from "next/image";
 
 interface GaleriPost {
   id: string;
@@ -48,7 +49,7 @@ export default function GalleriList() {
           galeriPosts.map((post) => (
             <div key={post.id} className="p-4 mb-4">
               <div className="w-72 h-52">
-                <img src={post.imageUrl} alt={post.title} className="mt-2 w-full h-full object-cover mb-2" />
+                <Image height={150} width={150} src={post.imageUrl} alt={post.title} className="mt-2 w-full h-full object-cover mb-2" />
               </div>
               <h2 className="text-xl text-secondary text-center p-2 mt-2 font-semibold bg-primary">{post.title}</h2>
             </div>

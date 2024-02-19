@@ -1,7 +1,7 @@
 "use client"
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-
+import Image from "next/image";
 export default function Artikel() {
   const router = useRouter()
   return (
@@ -15,7 +15,9 @@ export default function Artikel() {
       <div className="flex flex-col md:flex-row md:space-x-4 md:flex-wrap">
   <div className="flex flex-col w-full md:w-[400px] h-[450px] items-center gap-3 bg-secondary rounded-lg my-5">
     <div className="w-full h-52">
-      <img
+      <Image
+      height={250}
+      width={250}
         className="w-full h-full object-cover rounded-t-lg"
         src="/img/artikel1.jpg"
         alt="artikel 1"
@@ -28,7 +30,9 @@ export default function Artikel() {
 
   <div className="flex flex-col w-full md:w-[400px] h-[450px] items-center gap-3 bg-secondary rounded-lg my-5">
     <div className="w-full h-52">
-      <img
+      <Image
+      height={250}
+      width={250}
         className="w-full h-full object-cover rounded-t-lg"
         src="/img/artikel3.jpg"
         alt="artikel 1"
@@ -41,7 +45,9 @@ export default function Artikel() {
 
   <div className="flex flex-col w-full md:w-[400px] h-[450px] items-center gap-3 bg-secondary rounded-lg my-5">
     <div className="w-full h-52">
-      <img
+      <Image
+      height={250}
+      width={250}
         className="w-full h-full object-cover rounded-t-lg"
         src="/img/artikel2.jpg"
         alt="artikel 1"

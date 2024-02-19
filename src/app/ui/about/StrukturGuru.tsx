@@ -31,7 +31,9 @@ export default function StrukturGuru() {
         {struktur.map((guru, index) => (
           <div key={index} className="flex flex-col gap-3 justify-center items-center p-5 sm:p-10">
             <div className='w-52 h-52'>
-              <img
+              <Image
+              height={150}
+              width={150}
                 src={guru.imageUrl} // Assuming imageUrl is the field name for the image in your data
                 alt="gambar"
                 className="h-full w-full object-cover"

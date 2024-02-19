@@ -1,8 +1,16 @@
-"use client";
-import { useState, useEffect } from "react";
+"use client"
+import React, { useState, useEffect } from "react";
 import { getKontakPosts } from "@/app/lib/firebase/kontak/api";
-export default function page() {
-  const [kontakPosts, setKontakPosts] = useState([]);
+interface KontakPost {    
+  id: string;
+  name: string;
+  email: string;
+  message: string;
+  date: { seconds: number; nanoseconds: number };
+}
+export default function Page() {
+  const [kontakPosts, setKontakPosts] = useState<KontakPost[]>([]);
+
   useEffect(() => {
     // Fetch initial Kontak posts
     const fetchKontakPosts = async () => {
@@ -12,6 +20,22 @@ export default function page() {
 
     fetchKontakPosts();
   }, []);
+
+  function formatDate(timestamp: any) {
+    // Convert Firestore timestamp to JavaScript Date
+    const date = timestamp.toDate();
+
+    // Format the date as needed (example: YYYY-MM-DD HH:mm:ss)
+    const formattedDate = `${date.getFullYear()}-${padZero(date.getMonth() + 1)}-${padZero(date.getDate())} ${padZero(date.getHours())}:${padZero(date.getMinutes())}:${padZero(date.getSeconds())}`;
+
+    return formattedDate;
+  }
+
+  // Add a utility function to pad single digits with zero
+  function padZero(num: any) {
+    return num.toString().padStart(2, "0");
+  }
+
   return (
     <div>
       <div className="mt-4">
@@ -26,22 +50,4 @@ export default function page() {
       </div>
     </div>
   );
-  function formatDate(timestamp) {
-    // Convert Firestore timestamp to JavaScript Date
-    const date = timestamp.toDate();
-
-    // Format the date as needed (example: YYYY-MM-DD HH:mm:ss)
-    const formattedDate = `${date.getFullYear()}-${padZero(
-      date.getMonth() + 1
-    )}-${padZero(date.getDate())} ${padZero(date.getHours())}:${padZero(
-      date.getMinutes()
-    )}:${padZero(date.getSeconds())}`;
-
-    return formattedDate;
-  }
-
-  // Add a utility function to pad single digits with zero
-  function padZero(num) {
-    return num.toString().padStart(2, "0");
-  }
 }

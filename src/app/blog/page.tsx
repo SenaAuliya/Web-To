@@ -1,4 +1,6 @@
 import { Metadata } from 'next';
+import React from 'react'
+
 export const metadata: Metadata ={
   title: "Blog",
   description: "Halaman Blog dari Web jurusan To Smk N 1 Bangsri"

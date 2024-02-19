@@ -1,8 +1,7 @@
-import Image from "next/image";
-import Link from "next/link";
+import {CSSProperties} from 'react'
 
-export default async function HeroComponent() {
-  const containerStyle = {
+export default function HeroComponent() {
+  const containerStyle: CSSProperties = {
     position: 'relative',
     backgroundImage: `url(/img/DSC00749.jpg)`,
     backgroundSize: 'cover',
@@ -11,7 +10,7 @@ export default async function HeroComponent() {
     width: '100%',
   };
   
-  const overlayStyle = {
+  const overlayStyle: CSSProperties = {
     position: 'absolute',
     top: 0,
     right: 0,

@@ -1,4 +1,6 @@
 import GalleriList from "../ui/galeri/GaleriList";
+import React from 'react'
+
 import { Metadata } from "next";
 
 export const metadata: Metadata ={

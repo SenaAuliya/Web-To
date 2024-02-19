@@ -3,10 +3,17 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { getBlogPostById, updateBlogPost } from '@/app/lib/firebase/blog/api';
 import BlogForm from '@/app/components/BlogFormAdmin';
+interface BlogPost {    
+  id: string;
+  title: string;
+  content: string;
+  imageUrl: string;
+  date: { seconds: number; nanoseconds: number };
+}
 const EditBlogPage = ({ params }: { params: { id: string } }) => {
   const router = useRouter();
   const { id } = params;
-  const [blog, setBlog] = useState(null);
+  const [blog, setBlog] = useState<BlogPost | null>(null);
 
   const fetchBlogPost = async () => {
     const fetchedBlog = await getBlogPostById(id);

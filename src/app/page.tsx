@@ -5,6 +5,7 @@ import KoneksiIndustri from './ui/KoneksiIndustri'
 import Pengertian from './ui/Pengertian'
 import PilihanKarir from './ui/PilihanKarir'
 import Prestasi from './ui/Prestasi'
+import React from 'react'
 
 export const metadata: Metadata ={
   title: "Beranda",

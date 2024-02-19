@@ -9,7 +9,7 @@ const BlogForm = ({ onAddBlog, onUpdateBlog, initialBlog = null }: any) => {
   const [content, setContent] = useState(initialBlog?.content || "");
   const [file, setFile] = useState(null);
 
-  const stripHtmlTags = (html) => {
+  const stripHtmlTags = (html: any) => {
     const doc = new DOMParser().parseFromString(html, "text/html");
     return doc.body.textContent || "";
   };
@@ -25,7 +25,7 @@ const BlogForm = ({ onAddBlog, onUpdateBlog, initialBlog = null }: any) => {
     const cleanedContent = content
       .split(/<\/?p>/)
       .filter(Boolean)
-      .map((paragraph) => `<p>${paragraph}</p>`)
+      .map((paragraph: string) => `<p>${paragraph}</p>`)
       .join('\n');
 
     const blogData = { title, content: cleanedContent, fileURL };
@@ -68,7 +68,6 @@ const BlogForm = ({ onAddBlog, onUpdateBlog, initialBlog = null }: any) => {
           editor={ClassicEditor}
           data={content}
           onChange={(event, editor) => setContent(editor.getData())}
-          className="w-full h-[50px] border border-gray-300 rounded focus:outline-none focus:border-blue-500"
         />
       </div>
       <div className="mb-4">

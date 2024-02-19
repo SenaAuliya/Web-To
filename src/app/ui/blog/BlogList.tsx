@@ -5,6 +5,7 @@ import { getBlogPosts } from '@/app/lib/firebase/blog/api';
 import { Inria_Serif } from 'next/font/google';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import Image from 'next/image';
 
 interface BlogPost {
   id: string;
@@ -86,7 +87,9 @@ const BlogList: React.FC = () => {
           {currentPosts.map((blog) => (
             <div key={blog.id} className="flex flex-col sm:flex-row w-full justify-between items-center m-4 sm:m-7 p-3 sm:p-5">
               {blog.imageUrl && (
-                <img
+                <Image
+                width={150}
+                height={150}
                   src={blog.imageUrl}
                   alt={`Image for ${blog.title}`}
                   className="w-full sm:w-52 h-auto mb-3 sm:mr-5"
