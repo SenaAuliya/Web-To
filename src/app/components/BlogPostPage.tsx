@@ -93,6 +93,7 @@ const BlogListAdmin: React.FC<BlogListProps> = ({ blogPosts }) => {
           <div className="flex mb-5 sm:mb-0">
             {blog.imageUrl && (
               <Image
+              priority={true}
               height={150}
               width={150}
                 src={blog.imageUrl}

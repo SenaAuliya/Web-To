@@ -19,8 +19,6 @@ export default  function RootLayout({
   return (
     <html lang="id">
       <head>
-        <title>Web Jurusan To</title>
-        <link rel="icon" href="/favicon.ico" sizes="any" />      
         </head>
       <body className={inter.className}>
           <SessionProvider>

@@ -1,10 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-  @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@600&family=Inria+Serif:ital,wght@0,700;1,400&display=swap');
-body{
-  font-family: 'Inria-Serif', sans-serif;
-}
 
 
 @layer base {
